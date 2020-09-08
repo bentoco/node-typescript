@@ -1,11 +1,7 @@
-import express from 'express'
-import router from './routes'
-require('dotenv').config()
-const app = express()
-const port = process.env.SERVER_PORT
-
-app.use(router)
+import app from "./app";
+require("dotenv").config();
+const port = process.env.SERVER_PORT;
 
 app.listen(port, () => {
-  console.log(`Server listening on ${port}...`)
-})
+  console.log(`Server listening on ${port}...`);
+});
