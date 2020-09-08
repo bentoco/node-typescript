@@ -10,6 +10,15 @@ class UserController {
       console.log(JSON.stringify(error));
     }
   }
+
+  public async create(req: Request, res: Response): Promise<Response> {
+    try {
+      const user = await User.create(req.body);
+      return res.json(user);
+    } catch (error) {
+      console.log(JSON.stringify(error));
+    }
+  }
 }
 
 export default new UserController();
