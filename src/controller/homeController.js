@@ -1,5 +1,5 @@
 const home = (res) => {
-  res.send("Hello world");
-};
+  res.send('Hello world')
+}
 
-module.exports = home;
+module.exports = home
