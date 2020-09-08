@@ -4,11 +4,18 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  plugins: ["@typescript-eslint"],
-  extends: ["plugin:@typescript-eslint/recommended", "standard"],
+  plugins: "@typescript-eslint",
+  extends: [
+    "plugin:@typescript-eslint/recommended",
+    "prettier/@typescript-eslint",
+    "standard",
+  ],
   parserOptions: {
     ecmaVersion: 12,
     sourceType: "module",
   },
-  rules: {},
+  rules: {
+    "prettier/prettier": ["error", { singleQuote: true }],
+    "eol-last": [0, always],
+  },
 };
