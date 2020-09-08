@@ -15,7 +15,14 @@ module.exports = {
     sourceType: "module",
   },
   rules: {
-    "prettier/prettier": ["error", { singleQuote: true }],
+    "prettier/prettier": [
+      "error",
+      {
+        semi: false,
+        singleQuote: true,
+        trailingComma: false,
+      },
+    ],
     "eol-last": [0, always],
   },
 };

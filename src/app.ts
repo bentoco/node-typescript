@@ -1,15 +1,16 @@
+require("dotenv").config();
 import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
+import routes from "./routes";
 
 class App {
   public express: express.Application;
 
   public constructor() {
     this.express = express();
-
     this.middlewares();
-    this.database();
+    this.mongoSetup();
     this.routes();
   }
 
@@ -18,17 +19,22 @@ class App {
     this.express.use(cors());
   }
 
-  private database(): void {
-    mongoose.connect("mongodb://localhost:27017/tsnode", {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+  private mongoSetup(): void {
+    mongoose
+      .connect(process.env.DB_CONNECT, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      })
+      .then(() => {
+        console.log("MONGOOSE: Connected successfully!");
+      })
+      .catch((err) => {
+        console.log("Failed connection!" + err);
+      });
   }
 
   private routes(): void {
-    this.express.get("/", (_req, res) => {
-      return res.send("hello world!");
-    });
+    this.express.use(routes);
   }
 }
 
